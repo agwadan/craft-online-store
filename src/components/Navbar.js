@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../logo.svg'
+import styled from 'styled-components'
+import {ButtonStyler} from './Button'
+
+
 
 
 export default class Navbar extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
+            <NavStyler className="navbar navbar-expand-sm bg-primary navbar-dark px-sm-5">
                 {/* 
 https://www.iconfinder.com/icons/1243689/call_phone_icon
 Creative Commons (Attribution 3.0 Unported);
@@ -23,12 +27,24 @@ https://www.iconfinder.com/Makoto_msk */
             </ul>
 
             <Link to='/Cart' className="ml-auto">
-                <button>
+                <ButtonStyler>
+                    <span className="mr-2">
                     <i className="fas fa-cart-plus" />
-                     Basketi Yaffe
-                </button>
+                    </span>
+                     Basketi Yange
+                </ButtonStyler>
             </Link>
-            </nav>       
+            </NavStyler>       
         )
     }
 }
+
+const NavStyler = styled.nav `
+    background-color: var(--mainBrown)!important;
+    .nav-link{
+        color: var(--mainWhite)!important;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+    }
+
+`
