@@ -17,8 +17,8 @@ export default class ProductList extends Component {
                         <Title name="our" title="merchandise"></Title>
                         <div className="row">
                             <ProductConsumer>
-                                {value =>{
-                                  return value.products.map(product => {
+                                {(productValue) =>{
+                                  return productValue.products.map(product => {
                                       return <Product key={product.id} product={product}
                                        />;
                                   }) 
