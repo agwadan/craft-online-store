@@ -70,8 +70,35 @@ const ProductStyler = styled.div `
         overflow: hidden;
     }
 
+    
+
     .img-container:hover .card-img-top{
         transform: scale(1.2);
-        transition: all 1s linear;
+        transition: all 0.8s linear;
     }
+
+    .cart-btn{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0.2rem 0.4rem;
+        background: var(--lightBlue);
+        border: none;
+        color: var(--mainWhite);
+        font-size: 1.4rem;
+        border-radius: 0.5rem, 0, 0.5rem, 0;
+        transform: translate(100%, 100%);
+        
+    }
+
+    .img-container:hover .cart-btn{
+        transform: translate(0, 0);
+        transition: 1s;
+    }
+
+    .cart-btn:hover {
+        color: var(--limeGreen);
+        cursor: pointer;
+    }
+
 `
