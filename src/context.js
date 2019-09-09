@@ -24,10 +24,21 @@ class ProductProvider extends Component {
         this.setState(()=>{
             return {products: tempProducts}
         });
-    }
+    };
 
-    handleDetail = () => {
-        console.log('hello from detail');
+    /**UTILITY METHOD THAT GETS THE ITEM BY ID */
+    getItem = (id) => {
+        const product = this.state.products.find(item => item.id === id);
+        return product;
+    };
+
+    /**FUNCTION THAT IS CALLED TO SHOW DETAILS OF A PRODUCT */
+    handleDetail = (id) => {
+        const product = this.getItem();
+        this.setState(() => {
+            return {detailProduct:product}
+        })
+        
     }
 
     /**Below is the function that handles addition of

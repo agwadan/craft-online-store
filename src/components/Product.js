@@ -13,6 +13,8 @@ export default class Product extends Component {
         return (
             <ProductStyler className="col-9 mx-auto col-md-6 col-lg-3 my-3">
                 <div className="card">
+
+                    
                     <div className="img-container p-5" onClick={() => console.log('successfully clicked image')}>
                         <Link to="/details">
                             <img src={img} alt="product" className="card-img-top"/>
@@ -25,6 +27,9 @@ export default class Product extends Component {
         
 
                     </div>
+                    
+
+                     
 
                     {/*card footer at the bottom of each image */}
                     <div className="card-footer d-flex justify-content-between">
