@@ -32,7 +32,9 @@ class ProductProvider extends Component {
         return product;
     };
 
-    /**FUNCTION THAT IS CALLED TO SHOW DETAILS OF A PRODUCT */
+    /**FUNCTION THAT IS CALLED FROM PRODUCT.JS 
+     * TO SHOW DETAILS OF A PRODUCT 
+    */
     handleDetail = (id) => {
         const product = this.getItem();
         this.setState(() => {
