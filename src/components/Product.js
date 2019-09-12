@@ -14,20 +14,28 @@ export default class Product extends Component {
             <ProductStyler className="col-9 mx-auto col-md-6 col-lg-3 my-3">
                 <div className="card">
 
+                    <ProductConsumer>
+                        {(value) => (
+                            <div className="img-container p-5" onClick={() => 
+                                value.handleDetail(id)
+                            }>
+                            <Link to="/details">
+                                <img src={img} alt="product" className="card-img-top"/>
+                            </Link>
+    
+                            <button className="cart-btn" disabled={inCart ? true : false} onClick={()=>{value.addToCart(id);
+                            value.openModal(id)}}>
+    
+                            {inCart?(<p className="text-capitalize mb-0">In cart</p>):(<i className="fas fa-cart-plus"/>)}
+                            </button>
+            
+    
+                        </div>
+                        )
+                        
+                        }
                     
-                    <div className="img-container p-5" onClick={() => console.log('successfully clicked image')}>
-                        <Link to="/details">
-                            <img src={img} alt="product" className="card-img-top"/>
-                        </Link>
-
-                        <button className="cart-btn" disabled={inCart ? true : false} onClick={()=>{console.log('added to cart')}}>
-
-                        {inCart?(<p className="text-capitalize mb-0">In cart</p>):(<i className="fas fa-cart-plus"/>)}
-                        </button>
-        
-
-                    </div>
-                    
+                    </ProductConsumer>
 
                      
 

@@ -6,7 +6,11 @@ const ProductContext = React.createContext();
 class ProductProvider extends Component {
     state = {
         products:       [],
-        detailProduct:  detailProduct
+        detailProduct:  detailProduct,
+        cart: [],
+        modalOpen: true,
+        modalProduct: detailProduct,
+
     };
 
     componentDidMount(){
@@ -36,7 +40,7 @@ class ProductProvider extends Component {
      * TO SHOW DETAILS OF A PRODUCT 
     */
     handleDetail = (id) => {
-        const product = this.getItem();
+        const product = this.getItem(id);
         this.setState(() => {
             return {detailProduct:product}
         })
@@ -47,7 +51,41 @@ class ProductProvider extends Component {
      * a product to the cart
      */
     addToCart = (id) => {
-        console.log(`add item ${id} to Cart`);
+        let tempProducts = [...this.state.products]; //Getting access to all the products in the state
+        const index = tempProducts.indexOf(this.getItem(id)); //Getting the index of the item. 
+        const product = tempProducts[index];
+        product.inCart = true;
+        product.count = 1;
+
+        const price = product.price;
+        product.total = price; //Assigning the price of the item to the total price to pay for the product
+
+        this.setState(() => {
+            return {
+                products: tempProducts,
+                cart: [...this.state.cart, product]
+            };
+        },() => {console.log(this.state)});
+
+    };
+
+    /**FUNCTION TO DISPLAY THE MODAL WHEN AN ITEM IS ADDED TO THE CART */
+    openModal = (id) => {
+        const product = this.getItem(id);
+        this.setState (() => {
+            return{
+                modalProduct: product,
+                modalOpen: true
+            }
+        })
+    }
+
+
+    /**FUNCTION TO CLOSE THE MODAL */
+    closeModal = () => {
+        this.setState(() => {
+            return{modalOpen: false};
+        })
     }
 
     render() {
@@ -55,7 +93,9 @@ class ProductProvider extends Component {
             <ProductContext.Provider value={{
                 ...this.state,
                 handleDetail: this.handleDetail,
-                addToCart:this.addToCart,
+                addToCart: this.addToCart,
+                openModal: this.openModal,
+                closeModal: this.closeModal
             }}>
                 {this.props.children}
             </ProductContext.Provider>
