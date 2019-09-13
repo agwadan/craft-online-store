@@ -28,16 +28,17 @@ export default class Modal extends Component {
                                             <h5 className="text-muted">price: {price} UGX</h5>
                                             <Link to="/">
                                                 <ContentButton onClick={()=>{closeModal()}}>
-                                                    Continue Shopping
+                                                    Store
                                                 </ContentButton>
                                             </Link>
-
+                                            {" "}
                                             <Link to="/cart">
-                                                <ContentButton onClick={()=>{closeModal()}}>
+                                                <ContentButton cart onClick={()=>{closeModal()}}>
                                                 Go To Cart
                                                 </ContentButton>
                                                 
                                             </Link>
+                                            
                                         </div>
                                          
                                     </div>
@@ -65,5 +66,7 @@ const ModalContainer = styled.div `
 
     #modal{
         background: var(--mainWhite);
+        border-radius: 0.3rem;
+        padding-right: 3;
     }
 `;
