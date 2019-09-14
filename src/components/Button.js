@@ -41,6 +41,7 @@ export const ButtonStyler = styled.button `
     &:hover{
         background: ${props => (props.cart ? "var(--darkYellow)" : "var(--mainBlue)")};
         color: var(--mainWhite);
+        
     }
 
     &:focus{
