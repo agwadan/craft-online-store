@@ -7,7 +7,7 @@ class ProductProvider extends Component {
     state = {
         products:       [],
         detailProduct:  detailProduct,
-        cart: storeProducts,
+        cart: [],
         modalOpen: false,
         modalProduct: detailProduct,
         cartSubTotal: 0,
@@ -67,7 +67,9 @@ class ProductProvider extends Component {
                 products: tempProducts,
                 cart: [...this.state.cart, product]
             };
-        },() => {console.log(this.state)});
+        },() => {
+            this.addTotals();
+        });
 
     };
 
@@ -90,20 +92,108 @@ class ProductProvider extends Component {
         })
     }
 
+    /**FUNCTION TO INCREASE THE COUNT OF THE SAME PRODUCT IN THE CART */
     increment = (id) => {
-        console.log("Increment method");
+        let tempCart = [...this.state.cart];
+        const selectedProduct = tempCart.find(item=> item.id ===id);
+        
+        const index = tempCart.indexOf(selectedProduct);
+        const product = tempCart[index];
+
+        product.count = product.count + 1;
+        product.total = product.count * product.price;
+    
+        this.setState(()=>{
+            return{
+                cart: [...tempCart]
+            }},
+            ()=>{
+                this.addTotals();
+            }
+        )
     }
 
+    /**FUNCTION TO DECREMENT THE NUMBER OF THE SAME PRODUCT FROM THE CART */
     decrement = (id) => {
-        console.log("Decrement method");
+        const tempCart = [...this.state.cart];
+        const selectedProduct = tempCart.find(item => item.id === id);
+
+        const index = tempCart.indexOf(selectedProduct);
+        const product = tempCart[index];
+
+        product.count = product.count - 1;
+
+        if (product.count === 0){
+            this.removeItem(id);
+        } else{
+        
+        product.total = product.total - product.price;
+
+        this.setState(()=>{
+            return {
+                cart: [...tempCart]
+            }
+        },
+        ()=>{
+            this.addTotals();
+        })
+        }
     }
 
+    /**THE FUNCTION BELOW IS TO REMOVE AN ITEM FROM THE CART */
     removeItem = (id) => {
-        console.log("Item Removed");
+        let tempProducts = [...this.state.products];
+        let tempCart = [...this.state.cart];
+
+        tempCart = tempCart.filter(item => item.id !== id); //Ensuring temporary Cart only has items that dont match the passed in id
+        
+        const index = tempProducts.indexOf(this.getItem(id));
+        let removedProduct = tempProducts[index];
+
+        /**Below, the values are reset to default after the item is removed from the cart */
+        removedProduct.inCart = false;
+        removedProduct.count = 0;
+        removedProduct.total = 0;
+
+        this.setState(()=>{
+            return{
+                cart: [...tempCart],
+                products: [...tempProducts],
+            }
+        }, ()=> {
+            this.addTotals();
+        })
     }
 
     clearCart = () => {
-        console.log("Cart has been cleared");
+        this.setState(()=>{
+            return {cart: []};
+        },
+
+            () => {
+                this.setProducts(); //All the values of the products are set back to default
+                this.addTotals(); //All the calculated totals are reset to 0
+            }
+        )
+    }
+
+    /**THE FUNCTION BELOW DOES ALL THE NECESSARY TOTALINGS 
+     * FOR ITEMS ADDED TO THE CART
+     */
+    addTotals = () => {
+        let subTotal = 0;
+        this.state.cart.map(item=>(subTotal += item.total));
+        const tempTax = subTotal * 0.1;
+        const tax = parseFloat(tempTax.toFixed(2));
+        const total = subTotal + tax;
+        this.setState(()=>{
+            return{
+                cartSubTotal: subTotal,
+                cartTax: tax,
+                cartTotal: total
+
+            }
+        });
     }
 
     render() {
