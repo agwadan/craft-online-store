@@ -24,6 +24,10 @@ https://www.iconfinder.com/Makoto_msk */
                 <li className="nav-item ml-5">
                     <Link to="/" className="nav-link">merchandise</Link>
                 </li>
+
+                <li className="nav-item ml-5">
+                    <Link to='/About' className="nav-link">About</Link>
+                </li>
             </ul>
 
             <Link to='/Cart' className="ml-auto">
