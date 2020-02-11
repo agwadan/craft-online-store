@@ -45,7 +45,7 @@ export default function CartItem({item, value}) {
             </div>
 
             <div className="col-10 mx-auto col-lg-2">
-                <strong>Item Total: {total} UGX</strong>
+                <strong>Item Total: {total.toLocaleString()} UGX</strong>
                 
             </div>            
 

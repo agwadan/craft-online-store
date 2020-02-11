@@ -22,7 +22,7 @@ export default function CartTotals({value, history}) {
                                 SubTotal : 
                             </span>
                             <strong>
-                                {cartSubTotal} UGX
+                                {cartSubTotal.toLocaleString()} UGX
                             </strong>
                         </h5>
 
@@ -31,7 +31,7 @@ export default function CartTotals({value, history}) {
                                 Tax : 
                             </span>
                             <strong>
-                                {cartTax} UGX
+                                {cartTax.toLocaleString()} UGX
                             </strong>
                         </h5>
 
@@ -40,12 +40,12 @@ export default function CartTotals({value, history}) {
                                 Total : 
                             </span>
                             <strong>
-                                {cartTotal} UGX
+                                {cartTotal.toLocaleString()} UGX
                             </strong>
                         </h5>
 
                         <PayPalButton 
-                        total={cartTotal} 
+                        total={cartTotal.toLocaleString()} 
                         clearCart={clearCart} 
                         history={history}
                         />

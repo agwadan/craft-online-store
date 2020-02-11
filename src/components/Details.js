@@ -44,7 +44,7 @@ export default class Details extends Component {
 
                                     <h4>
                                         <strong>
-                                            Price: {price} <span>UGX</span>
+                                            Price: {price.toLocaleString()} <span>UGX</span>
                                         </strong>
                                     </h4>
                                     
