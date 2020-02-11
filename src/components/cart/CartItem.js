@@ -22,7 +22,7 @@ export default function CartItem({item, value}) {
 
             <div className="col-10 mx-auto col-lg-2">
                 <span className="d-lg-none">Price: </span>
-                {price}
+                {price.toLocaleString()}<span> UGX</span>
             </div>
 
             <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0">

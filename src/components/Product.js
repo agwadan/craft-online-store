@@ -44,8 +44,8 @@ export default class Product extends Component {
                         <p className="align-self-center mb-0">
                             {title}
                         </p>
-                        <h5 className="text-blue font-italic mb-0">{price} 
-                            <span className="mr-1">UGX</span>
+                        <h5 className="text-blue font-italic mb-0">{price.toLocaleString()} 
+                            <span className="mr-1"><strong> UGX</strong></span>
                         </h5>
                     </div>
 
