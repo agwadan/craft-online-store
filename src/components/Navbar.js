@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import logo from '../paw-print.svg'
 import styled from 'styled-components'
 import {ButtonStyler} from './Button';
+import { MdShoppingCart} from 'react-icons/md';
 
 
 
@@ -31,10 +32,9 @@ https://www.iconfinder.com/Makoto_msk */
             </ul>
 
             <Link to='/Cart' className="ml-auto">
-                <ButtonStyler>
-                <span class="glyphicon glyphicon-shopping-cart"></span>
-                     Basketi Yange
-                </ButtonStyler>
+                
+              <MdShoppingCart style={cartStyler}/>
+              
             </Link>
             </NavStyler>       
         )
