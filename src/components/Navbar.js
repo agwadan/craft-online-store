@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import logo from '../paw-print.svg'
 import styled from 'styled-components'
-import {ButtonStyler} from './Button'
+import {ButtonStyler} from './Button';
 
 
 
@@ -32,9 +32,7 @@ https://www.iconfinder.com/Makoto_msk */
 
             <Link to='/Cart' className="ml-auto">
                 <ButtonStyler>
-                    <span className="mr-2">
-                    <i className="fas fa-cart-plus" />
-                    </span>
+                <span class="glyphicon glyphicon-shopping-cart"></span>
                      Basketi Yange
                 </ButtonStyler>
             </Link>

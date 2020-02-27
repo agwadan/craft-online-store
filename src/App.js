@@ -9,6 +9,8 @@ import Cart from './components/cart';
 import Default from './components/Default';
 import Modal from './components/Modal';
 import About from './components/About';
+import Sidebar from './components/Sidebar';
+
 
 class App extends Component {
   render(){
@@ -17,6 +19,7 @@ class App extends Component {
     //react.fragment allows us to simulate html tags. i.e. no need to rewrite the tags over and over again.
     <React.Fragment>
       <Navbar />
+      <Sidebar />
       <Switch>
         <Route exact path="/" component={ProductList} />
         <Route path="/Details" component={Details} />

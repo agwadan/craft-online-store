@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Product from './Product';
 import Title from './Title';
-
+import styled from 'styled-components';
 import {ProductConsumer} from '../context';
 
 export default class ProductList extends Component {
@@ -11,6 +11,7 @@ export default class ProductList extends Component {
     render() {
         
         return (
+            
             <React.Fragment>
                 <div className="py-5">
                     <div className="container">
@@ -29,7 +30,12 @@ export default class ProductList extends Component {
                 </div>
             </React.Fragment>
              //   <Product />
+             
             
         )
     }
 }
+
+const ProductListStyler = styled.div`
+
+`
