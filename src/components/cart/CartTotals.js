@@ -44,11 +44,11 @@ export default function CartTotals({value, history}) {
                             </strong>
                         </h5>
 
-                        <PayPalButton 
+                      {/*  <PayPalButton 
                         total={cartTotal.toLocaleString()} 
                         clearCart={clearCart} 
                         history={history}
-                        />
+                      /> */}
                              
                         
 

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {MdRemoveShoppingCart} from 'react-icons/md';
 
 export default function CartItem({item, value}) {
     const {id,title,img,price,total,count} = item;
@@ -39,7 +40,7 @@ export default function CartItem({item, value}) {
 
             <div className="col-10 mx-auto col-lg-2">
                 <div className="cart-icon" onClick={()=>removeItem(id)}>
-                    <i className="fas fa-trash"></i>
+                    <MdRemoveShoppingCart size={32}/>
                 </div>
                 
             </div>

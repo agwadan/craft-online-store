@@ -4,6 +4,7 @@ import logo from '../paw-print.svg'
 import styled from 'styled-components'
 import {ButtonStyler} from './Button';
 import { MdShoppingCart} from 'react-icons/md';
+import {IconContext} from 'react-icons';
 
 
 
@@ -32,8 +33,15 @@ https://www.iconfinder.com/Makoto_msk */
             </ul>
 
             <Link to='/Cart' className="ml-auto">
-                
-              <MdShoppingCart style={cartStyler}/>
+
+               <IconContext.Provider
+                value = {{
+                    color: "white",
+                    size: 32
+                }}
+               > 
+              <MdShoppingCart/>
+              </IconContext.Provider>
               
             </Link>
             </NavStyler>       

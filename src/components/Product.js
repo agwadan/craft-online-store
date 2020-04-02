@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import {ProductConsumer} from '../context';
 import PropTypes from 'prop-types';
+import {MdAddShoppingCart} from 'react-icons/md';
+import {IconContext} from 'react-icons';
+
 
 export default class Product extends Component {
     render() {
@@ -26,7 +29,17 @@ export default class Product extends Component {
                             <button className="cart-btn" disabled={inCart ? true : false} onClick={()=>{value.addToCart(id);
                             value.openModal(id)}}>
     
-                            {inCart?(<p className="text-capitalize mb-0">In cart</p>):(<i className="fas fa-cart-plus"/>)}
+                            {inCart?(<p className="text-capitalize mb-0">In cart</p>) : 
+                            (
+                                <IconContext.Provider
+                                value = {{
+                                    color: "white",
+                                    size: 32
+                                }}
+                                >
+                                    <MdAddShoppingCart/>
+                                </IconContext.Provider>
+                            )}
                             </button>
             
     
