@@ -8,13 +8,12 @@ import Details from './components/Details';
 import Cart from './components/cart';
 import Default from './components/Default';
 import Modal from './components/Modal';
-import About from './components/About';
+import About from './components/about';
 
 
 class App extends Component {
   render() {
     return (
-
       //react.fragment allows us to simulate html tags. i.e. no need to rewrite the tags over and over again.
       <React.Fragment>
         <Navbar />
