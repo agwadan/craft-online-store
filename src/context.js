@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import {StoreProducts, detailProduct, storeProducts} from './data';
+import { detailProduct, storeProducts } from './data';
 
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
     state = {
-        products:       [],
-        detailProduct:  detailProduct,
+        products: [],
+        detailProduct: detailProduct,
         cart: [],
         modalOpen: false,
         modalProduct: detailProduct,
@@ -15,20 +15,20 @@ class ProductProvider extends Component {
         cartTotal: 0
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.setProducts();
     }
 
     setProducts = () => {
         let tempProducts = [];
         storeProducts.forEach(item => {
-            const singleItem = {...item};
+            const singleItem = { ...item };
             tempProducts = [...tempProducts, singleItem]
-            
+
         })
 
-        this.setState(()=>{
-            return {products: tempProducts}
+        this.setState(() => {
+            return { products: tempProducts }
         });
     };
 
@@ -44,9 +44,9 @@ class ProductProvider extends Component {
     handleDetail = (id) => {
         const product = this.getItem(id);
         this.setState(() => {
-            return {detailProduct:product}
+            return { detailProduct: product }
         })
-        
+
     }
 
     /**Below is the function that handles addition of
@@ -67,7 +67,7 @@ class ProductProvider extends Component {
                 products: tempProducts,
                 cart: [...this.state.cart, product]
             };
-        },() => {
+        }, () => {
             this.addTotals();
         });
 
@@ -76,8 +76,8 @@ class ProductProvider extends Component {
     /**FUNCTION TO DISPLAY THE MODAL WHEN AN ITEM IS ADDED TO THE CART */
     openModal = (id) => {
         const product = this.getItem(id);
-        this.setState (() => {
-            return{
+        this.setState(() => {
+            return {
                 modalProduct: product,
                 modalOpen: true
             }
@@ -88,26 +88,27 @@ class ProductProvider extends Component {
     /**FUNCTION TO CLOSE THE MODAL */
     closeModal = () => {
         this.setState(() => {
-            return{modalOpen: false};
+            return { modalOpen: false };
         })
     }
 
     /**FUNCTION TO INCREASE THE COUNT OF THE SAME PRODUCT IN THE CART */
     increment = (id) => {
         let tempCart = [...this.state.cart];
-        const selectedProduct = tempCart.find(item=> item.id ===id);
-        
+        const selectedProduct = tempCart.find(item => item.id === id);
+
         const index = tempCart.indexOf(selectedProduct);
         const product = tempCart[index];
 
         product.count = product.count + 1;
         product.total = product.count * product.price;
-    
-        this.setState(()=>{
-            return{
+
+        this.setState(() => {
+            return {
                 cart: [...tempCart]
-            }},
-            ()=>{
+            }
+        },
+            () => {
                 this.addTotals();
             }
         )
@@ -123,20 +124,20 @@ class ProductProvider extends Component {
 
         product.count = product.count - 1;
 
-        if (product.count === 0){
+        if (product.count === 0) {
             this.removeItem(id);
-        } else{
-        
-        product.total = product.total - product.price;
+        } else {
 
-        this.setState(()=>{
-            return {
-                cart: [...tempCart]
-            }
-        },
-        ()=>{
-            this.addTotals();
-        })
+            product.total = product.total - product.price;
+
+            this.setState(() => {
+                return {
+                    cart: [...tempCart]
+                }
+            },
+                () => {
+                    this.addTotals();
+                })
         }
     }
 
@@ -146,7 +147,7 @@ class ProductProvider extends Component {
         let tempCart = [...this.state.cart];
 
         tempCart = tempCart.filter(item => item.id !== id); //Ensuring temporary Cart only has items that dont match the passed in id
-        
+
         const index = tempProducts.indexOf(this.getItem(id));
         let removedProduct = tempProducts[index];
 
@@ -155,19 +156,19 @@ class ProductProvider extends Component {
         removedProduct.count = 0;
         removedProduct.total = 0;
 
-        this.setState(()=>{
-            return{
+        this.setState(() => {
+            return {
                 cart: [...tempCart],
                 products: [...tempProducts],
             }
-        }, ()=> {
+        }, () => {
             this.addTotals();
         })
     }
 
     clearCart = () => {
-        this.setState(()=>{
-            return {cart: []};
+        this.setState(() => {
+            return { cart: [] };
         },
 
             () => {
@@ -182,12 +183,12 @@ class ProductProvider extends Component {
      */
     addTotals = () => {
         let subTotal = 0;
-        this.state.cart.map(item=>(subTotal += item.total));
+        this.state.cart.map(item => (subTotal += item.total));
         const tempTax = subTotal * 0.1;
         const tax = parseFloat(tempTax.toFixed(2));
         const total = subTotal + tax;
-        this.setState(()=>{
-            return{
+        this.setState(() => {
+            return {
                 cartSubTotal: subTotal,
                 cartTax: tax,
                 cartTotal: total
@@ -216,4 +217,4 @@ class ProductProvider extends Component {
 }
 
 const ProductConsumer = ProductContext.Consumer;
-export {ProductProvider, ProductConsumer};
+export { ProductProvider, ProductConsumer };

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../telephone.svg'
 import styled from 'styled-components'
-import { ButtonStyler } from './Button';
+/* import { ButtonStyler } from './Button'; */
 import { MdShoppingCart } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 
